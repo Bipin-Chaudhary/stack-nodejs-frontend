@@ -31,9 +31,9 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>Welcome to Stack NodeJS App</p>
+    <div>
+      <header>
+        <p className="text-4xl text-center py-5">Welcome to Stack NodeJS App</p>
       </header>
       <div>
         <StackList stacks={stacks} />
