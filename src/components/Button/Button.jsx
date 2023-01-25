@@ -12,9 +12,7 @@ const Button = (props) => {
     }
 
     return (
-        <div>
-            <button onClick={onPopHandler}>Pop</button>
-        </div>
+        <button className="bg-[#9c7eee] rounded-md px-16 py-1 w-10 flex justify-center items-center text-slate-300 font-bold text-lg" onClick={onPopHandler}>Pop</button>
     );
 };
 

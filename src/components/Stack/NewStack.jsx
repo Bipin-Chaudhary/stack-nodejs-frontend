@@ -12,17 +12,15 @@ function NewStack(props) {
     }
 
     return (
-        <div>
-            <p>
-                <label htmlFor="add-element"></label>
-                <input
-                    type="number"
-                    id="add-element"
-                    required
-                    onChange={onChangeHandler}
-                />
-            </p>
-            <button type="submit" onClick={onSubmitHandler}>
+        <div className="flex flex-row gap-5">
+            <input
+                className=" text-[#4c05d0] rounded-md"
+                type="number"
+                id="add-element"
+                required
+                onChange={onChangeHandler}
+            />
+            <button className="px-12 py-1 bg-[#9c7eee] rounded-md text-slate-300 font-bold text-lg" type="submit" onClick={onSubmitHandler}>
                 Push
             </button>
         </div>

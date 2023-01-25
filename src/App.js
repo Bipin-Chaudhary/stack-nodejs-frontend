@@ -32,14 +32,18 @@ function App() {
 
   return (
     <div>
-      <header>
-        <p className="text-4xl text-center py-5">Welcome to Stack NodeJS App</p>
+      <header className="ml-5 text-3xl text-center m-9 font-medium text-slate-300">
+        <p>Welcome to Stack NodeJS App</p>
       </header>
-      <div>
-        <StackList stacks={stacks} />
+      <div className="flex flex-row justify-center"> 
+        <div className="w-1/2 flex justify-center items-center gap-10 h-[600px]">
+          <NewStack onAddStack={addStackHandler} />
+          <Button updateData={getData} />
+        </div>
+        <div className=" w-1/2 flex flex-col justify-center items-center gap-1 h-[600px] overflow-auto"  >
+          <StackList stacks={stacks} />
+        </div>
       </div>
-      <Button updateData={getData} />
-      <NewStack onAddStack={addStackHandler} />
     </div>
   );
 }
