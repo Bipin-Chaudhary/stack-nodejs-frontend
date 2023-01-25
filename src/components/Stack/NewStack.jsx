@@ -1,21 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-function NewStack() {
+function NewStack(props) {
+    const [enteredElement, setEnteredElement] = useState("");
 
-    const [enteredElement, setEnteredElement] = useState('')
+    function onSubmitHandler(event) {
+        props.onAddStack(enteredElement);
+    }
 
-    function changeInputHandler(event) {
-        setEnteredElement(event.target.value)
+    function onChangeHandler(event) {
+        setEnteredElement(event.target.value);
     }
 
     return (
-        <form >
+        <div>
             <p>
-                <label htmlFor="add-element">Add Element</label>
-                <input type="number" id="add-element" required onChange={changeInputHandler} />
+                <label htmlFor="add-element"></label>
+                <input
+                    type="number"
+                    id="add-element"
+                    required
+                    onChange={onChangeHandler}
+                />
             </p>
-            <p>{enteredElement}</p>
-        </form>
+            <button type="submit" onClick={onSubmitHandler}>
+                Push
+            </button>
+        </div>
     );
 }
 

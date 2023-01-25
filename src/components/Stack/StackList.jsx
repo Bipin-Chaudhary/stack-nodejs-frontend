@@ -1,12 +1,10 @@
-import React from 'react';
-import StackItem from './StackItem';
-
-const DUMMY_STACK = [1, 2, 3, 4, 5];
+import React from "react";
+import StackItem from "./StackItem";
 
 const StackList = (props) => {
-  return DUMMY_STACK.map((ele) => {
+  return props.stacks.map((ele) => {
     return (
-      <ul >
+      <ul>
         <StackItem element={ele} />
       </ul>
     );
