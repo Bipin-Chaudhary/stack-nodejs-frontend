@@ -13,7 +13,7 @@ function App() {
   }, []);
   async function getData() {
     try {
-      const data = await getApi("stack");
+      const data = await getApi();
 
       setStacks(data.data);
     } catch (err) {
@@ -23,7 +23,7 @@ function App() {
 
   const addStackHandler = async (stack) => {
     try {
-      const res = await postApi("stack", { element: stack });
+      const res = await postApi({ element: stack });
       if (!res?.data) {
         return setErrorMessage(res.message);
       }

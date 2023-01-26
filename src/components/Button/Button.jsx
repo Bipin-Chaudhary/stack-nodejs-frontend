@@ -4,7 +4,7 @@ import { deleteApi } from "../../service/api";
 const Button = (props) => {
     async function onPopHandler() {
         try {
-            const res = await deleteApi("stack");
+            const res = await deleteApi();
             if (!res?.data) {
                 return props.onError(res.message);
             }

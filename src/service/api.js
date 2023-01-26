@@ -1,23 +1,23 @@
 import qs from "qs";
-const baseUrl = "http://localhost:4000/";
+const baseUrl = "/api";
 
-export async function getApi(url) {
+export async function getApi() {
   try {
-    const res = await fetch(baseUrl + url);
+    const res = await fetch(baseUrl + '/stack');
     return res.json();
   } catch (err) {
     return err;
   }
 }
 
-export async function postApi(url, data) {
+export async function postApi(data) {
   try {
     const headers = {
       "Content-Type": "application/x-www-form-urlencoded",
       Accept: "*/*",
     };
 
-    const res = await fetch(baseUrl + url, {
+    const res = await fetch(baseUrl + '/stack', {
       method: "POST",
       body: qs.stringify(data),
       headers,
@@ -29,9 +29,9 @@ export async function postApi(url, data) {
   }
 }
 
-export async function deleteApi(url) {
+export async function deleteApi() {
   try {
-    const data = await fetch(baseUrl + url, { method: "DELETE" });
+    const data = await fetch(baseUrl + '/stack', { method: "DELETE" });
     return data.json();
   } catch (err) {
     return err;
