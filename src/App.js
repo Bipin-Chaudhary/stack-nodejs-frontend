@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import StackList from "./components/Stack/StackList";
 import Button from "./components/Button/Button";
 import NewStack from "./components/Stack/NewStack";
-import { getApi, postApi } from "./components/service/api";
+import { getApi, postApi } from "./service/api";
 
 function App() {
   const [stacks, setStacks] = useState([]);

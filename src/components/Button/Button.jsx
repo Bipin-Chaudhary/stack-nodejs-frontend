@@ -1,5 +1,5 @@
 import React from "react";
-import { deleteApi } from "../service/api";
+import { deleteApi } from "../../service/api";
 
 const Button = (props) => {
     async function onPopHandler() {
