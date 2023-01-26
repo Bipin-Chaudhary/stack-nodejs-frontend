@@ -4,15 +4,25 @@ import { deleteApi } from "../service/api";
 const Button = (props) => {
     async function onPopHandler() {
         try {
-            await deleteApi("stack");
+            const res = await deleteApi("stack");
+            if (!res?.data) {
+                return props.onError(res.message);
+            }
             props.updateData();
-        } catch (error) {
-            console.log(error);
+
+            props.onError("");
+        } catch (err) {
+            console.log(err);
         }
     }
 
     return (
-        <button className="bg-[#9c7eee] rounded-md px-16 py-1 w-10 flex justify-center items-center text-slate-300 font-bold text-lg" onClick={onPopHandler}>Pop</button>
+        <button
+            className=" bg-[#9c7eee] rounded-md px-10 py-3 text-slate-300 font-bold text-lg w-1/2 justify-self-center "
+            onClick={onPopHandler}
+        >
+            Pop
+        </button>
     );
 };
 

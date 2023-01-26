@@ -6,6 +6,7 @@ import { getApi, postApi } from "./components/service/api";
 
 function App() {
   const [stacks, setStacks] = useState([]);
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     getData();
@@ -15,19 +16,29 @@ function App() {
       const data = await getApi("stack");
 
       setStacks(data.data);
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      console.log(err);
     }
   }
 
   const addStackHandler = async (stack) => {
     try {
-      setStacks((prevStacks) => [stack, ...prevStacks]);
+      const res = await postApi("stack", { element: stack });
+      if (!res?.data) {
+        return setErrorMessage(res.message);
+      }
 
-      await postApi("stack", { element: stack });
-    } catch (error) {
-      console.log(error);
+      setStacks((prevStacks) => [...prevStacks, stack]);
+      setErrorMessage("");
+    } catch (err) {
+      console.log(err);
     }
+  };
+
+  const errorMessageHandler = async (msg) => {
+    if (msg) return setErrorMessage(msg);
+
+    setErrorMessage("");
   };
 
   return (
@@ -35,12 +46,22 @@ function App() {
       <header className="ml-5 text-3xl text-center m-9 font-medium text-slate-300">
         <p>Welcome to Stack NodeJS App</p>
       </header>
-      <div className="flex flex-row justify-center"> 
-        <div className="w-1/2 flex justify-center items-center gap-10 h-[600px]">
-          <NewStack onAddStack={addStackHandler} />
-          <Button updateData={getData} />
+      <div className="flex flex-row justify-center">
+        <div className=" w-1/2 flex flex-col justify-center items-center gap-10 h-[600px]">
+          <div className=" w-1/2 p-10">
+            <p className="text-center text-red-400 bold-md text-2xl">
+              {errorMessage}
+            </p>
+          </div>
+          <div className=" w-1/2 grid grid-rows-3 gap-3 p-10">
+            <NewStack
+              onError={errorMessageHandler}
+              onAddStack={addStackHandler}
+            />
+            <Button onError={errorMessageHandler} updateData={getData} />
+          </div>
         </div>
-        <div className=" w-1/2 flex flex-col justify-center items-center gap-1 h-[600px] overflow-auto"  >
+        <div className=" w-1/2 flex flex-col justify-center items-center gap-1 h-[600px] overflow-auto">
           <StackList stacks={stacks} />
         </div>
       </div>
